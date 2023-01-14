@@ -28,6 +28,7 @@ FORMATS = {
 class Engine(BaseEngine):
 
     def __init__(self, context):
+        print("karthickeyua")
         self.original_size = 1, 1
         self.duration = 0
         self.crop_info = 1, 1, 0, 0
@@ -242,7 +243,7 @@ class Engine(BaseEngine):
         vf_flags = ['-vf', ','.join(self.ffmpeg_vfilters)] if self.ffmpeg_vfilters else []
 
         flags = [
-            '-loop', '0', '-an', '-pix_fmt', pix_fmt, '-movflags', 'faststart',
+            '-loop', '0', '-pix_fmt', pix_fmt, '-movflags', 'faststart',
         ] + vf_flags + ['-f', 'webp']
 
         if is_lossless:
@@ -318,9 +319,10 @@ class Engine(BaseEngine):
         return vfilters
 
     def transcode_to_vp9(self, src_file):
+        print("karthi")
         vf_flags = ['-vf', ','.join(self.ffmpeg_vfilters)] if self.ffmpeg_vfilters else []
         flags = [
-            '-c:v', 'libvpx-vp9', '-loop', '0', '-an', '-pix_fmt', 'yuv420p',
+            '-c:v', 'libvpx-vp9', '-loop', '0', '-pix_fmt', 'yuv420p',
             '-movflags', 'faststart',
         ] + vf_flags + ['-f', 'webm']
 
@@ -355,7 +357,7 @@ class Engine(BaseEngine):
         vf_flags = ['-vf', ','.join(self.ffmpeg_vfilters)] if self.ffmpeg_vfilters else []
 
         flags = [
-            '-c:v', 'libx264', '-an', '-pix_fmt', 'yuv420p', '-movflags', 'faststart',
+            '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-movflags', 'faststart',
         ] + vf_flags + ['-f', 'mp4']
 
         if self.get_config('tune', 'h264'):
@@ -393,7 +395,7 @@ class Engine(BaseEngine):
         vf_flags = ['-vf', ','.join(self.ffmpeg_vfilters)] if self.ffmpeg_vfilters else []
 
         flags = [
-            '-c:v', 'hevc', '-tag:v', 'hvc1', '-an', '-pix_fmt', 'yuv420p',
+            '-c:v', 'hevc', '-tag:v', 'hvc1', '-pix_fmt', 'yuv420p',
             '-movflags', 'faststart',
         ] + vf_flags + ['-f', 'mp4']
 

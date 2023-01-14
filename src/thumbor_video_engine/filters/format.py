@@ -3,14 +3,11 @@ from thumbor.utils import logger
 
 from thumbor_video_engine.compat import filter_retval
 
-
 ALLOWED_FORMATS = [
     'png', 'jpeg', 'jpg', 'gif', 'webp', 'webm', 'mp4', 'hevc', 'h264', 'h265', 'vp9']
 
-
 class Filter(BaseFilter):
     phase = PHASE_PRE_LOAD
-
     @filter_method(BaseFilter.String)
     def format(self, format):
         logger.debug('Setting format to %s' % format)
